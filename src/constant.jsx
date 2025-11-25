@@ -15,7 +15,7 @@
 
 //"build": "CI=false react-scripts build",
 /////////////////////////PRODUCTION API'S//////////////////////////////
-///////////////Test deployment from team bhima//////////////
+
 export const CASHFREEMODE = "production"
 export const API_RENEWACCESSTOKEN = "https://bmcapis.bhimagold.com/api_db.js/users"
 export const API_THIRDPARTYPAYMENT = "https://bmcapis.bhimagold.com/api_db.js/api"
