@@ -64,7 +64,6 @@ const Status = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('API Response:', data);
           setApiResponse(data);
           setIsLoading(false)
           setShowCloseButton(true);

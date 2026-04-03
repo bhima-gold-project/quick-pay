@@ -118,7 +118,6 @@ function Popup(props) {
   }, []);
 
   const sendOTP = async () => {
-    console.log("Sending OTP...");
     if (mobileNumber.trim() === "") {
       setMobileError("Mobile number is required");
       setMobileNumber(""); // Clear the field value

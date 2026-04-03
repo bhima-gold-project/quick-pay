@@ -172,7 +172,6 @@ function App() {
 
       if (apiResponse.ok) {
         const apiData = await apiResponse.json();
-        console.log('API response:', apiData);
       } else {
         console.error('Error sending response to API:', apiResponse.status);
       }
@@ -225,7 +224,6 @@ function App() {
 
         // Use setPaymentInfo with a callback to ensure the state is updated
         setPaymentInfo(prevPaymentInfo => {
-          console.log('Payment API response:', res);
           // Return the new state based on the previous state
           return { ...prevPaymentInfo, ...res };
         });
@@ -265,7 +263,6 @@ function App() {
   // Function to open Razorpay payment gateway
   const openRazorpayPayment = async () => {
     try {
-      console.log('openRazorpayPayment called');
       const options = {
         key: paymentInfo.pgkey,
         amount: paymentInfo.TxnAmt * 100,
