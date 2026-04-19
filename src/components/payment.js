@@ -49,7 +49,7 @@ function App() {
 
   const renewAccessToken = async () => {
     try {
-  
+
       const existingToken = TOKEN
       const tokenURl = `${API_RENEWACCESSTOKEN}/renewAccessToken`;
       const response = await fetch(tokenURl, {
@@ -113,7 +113,13 @@ function App() {
           // Check if there are pending payments
           const hasPendingPayments = data.some(customer => customer.PaymentPending);
           if (!hasPendingPayments) {
-            toast.info('No Installments Pending');
+            const reason = data[0]?.Reason;
+
+            const formattedReason = reason
+              ? reason?.toLowerCase().replace(/\b\w/g, char => char.toUpperCase())
+              : 'No Installments Pending';
+            toast.info(formattedReason,{ autoClose: 3000 });
+  
           } else {
             // Check if the MembershipNo matches the Mobile No
             setCustomerInfo(data);
@@ -440,7 +446,7 @@ function App() {
                   disabled={dataVerified}
                   onFocus={handleInputFocus}
                   placeholder="Enter Your Membership No"
-                   className="membership-input"
+                  className="membership-input"
                   style={{
                     color: "#614119",
                     width: "100%",
@@ -452,7 +458,7 @@ function App() {
                     boxSizing: "border-box",
                     background: "transparent",
                     opacity: dataVerified ? 0.7 : 1,
-                   textTransform: "uppercase"
+                    textTransform: "uppercase"
                   }}
                   {...register('membershipNumber', {
                     required: 'Membership number is required',
@@ -643,22 +649,22 @@ function App() {
                   </p>
                 </div>
                 {
-                  customer?.SchemeName == 'KUBERA' && 
-                        <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.25rem",
-                    alignItems: "center",
-                  }}
-                >
-                  <p style={{ margin: 0, fontSize: "1rem", fontWeight: 500 }}>
-                    Gold Rate:{" "}
-                    <span style={{ fontWeight: "normal" }}>
-                      {customer?.GoldRate} Rs/Grams
-                    </span>
-                  </p>
-                </div>
+                  customer?.SchemeName == 'KUBERA' &&
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.25rem",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p style={{ margin: 0, fontSize: "1rem", fontWeight: 500 }}>
+                      Gold Rate:{" "}
+                      <span style={{ fontWeight: "normal" }}>
+                        {customer?.GoldRate} Rs/Grams
+                      </span>
+                    </p>
+                  </div>
                 }
 
                 {/* Payment Info */}
